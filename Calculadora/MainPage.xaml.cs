@@ -2,23 +2,28 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private void btn_Somar(object sender, EventArgs e)
         {
-            count++;
+            double v1 = Convert.ToDouble(inp_v1.Text);
+            double v2 = Convert.ToDouble(inp_v2.Text);
+            string operador = picker_operador.SelectedItem.ToString();
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            switch (operador)
+            {
+                case "Soma": DisplayAlert("Resultado",$"O resultado é: {v1+v2}","Fechar"); break;
+                case "Subtração": DisplayAlert("Resultado", $"O resultado é: {v1-v2}", "Fechar"); break;
+                case "Multiplicação": DisplayAlert("Resultado", $"O resultado é: {v1*v2}", "Fechar"); break;
+                case "Divisão": DisplayAlert("Resultado", $"O resultado é: {v1/v2}", "Fechar"); break;
+                default: DisplayAlert("Erro", "Como você quebrou meu código?", "Atumalaca"); break;
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+
+            }
         }
     }
 }
